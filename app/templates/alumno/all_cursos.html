@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-gray-800 mb-2">Todos los Cursos</h1>
+    <p class="text-gray-600">Aquí puedes ver todos los cursos disponibles para inscripción.</p>
+  </div>
+
+  {% if cursos %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for curso in cursos %}
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+          <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ curso.nombre_curso }}</h3>
+          <p class="text-sm text-gray-600 mb-4">{{ curso.descripcion }}</p>
+          <p class="text-sm text-gray-600 mb-4">Profesor: {{ curso.nombre_usuario }}</p>
+          <p class="text-sm text-gray-600 mb-4">Departamento: {{ curso.departamento }}</p>
+          <form method="POST" action="{{ url_for('alumno.inscribir_curso', curso_id=curso.id_curso) }}">
+            <button type="submit" class="text-green-600 hover:underline font-medium">Inscribirse →</button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+      <p class="text-yellow-700">No hay cursos disponibles para inscripción.</p>
+    </div>
+  {% endif %}   
+</div>
+{% endblock %}

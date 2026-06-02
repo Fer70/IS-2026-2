@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Alumnos del Curso{% endblock %}
+
+{% block content %}
+<div class="space-y-6"> 
+    <div>
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">Alumnos Inscritos</h1>
+        <p class="text-gray-600">Aquí puedes ver la lista de alumnos inscritos en el curso <span class="font-semibold">{{ curso.nombre_curso }}</span>.</p>
+    </div>            
+        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+            <p class="text-gray-700">Revisa los alumnos inscritos.</p>
+        </div>  
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+            {% for alumno in alumnos %}
+            <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ alumno.nombre_usuario }}</h3>
+                <p class="text-sm text-gray-600 mb-4">Cuenta: {{ alumno.num_cuenta }}</p>
+                <p class="text-sm text-gray-600 mb-4">Carrera: {{ alumno.carrera }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="pt-6 border-t border-gray-200">
+            <a href="{{ url_for('admin.view_courses') }}" class="text-blue-600 hover:underline font-medium">← Volver a mis cursos</a>
+        </div>
+</div>
+{% endblock %}

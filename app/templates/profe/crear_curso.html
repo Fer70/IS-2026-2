@@ -1,0 +1,30 @@
+{%- extends "base.html" -%}
+
+{% block title %}Crear Curso{% endblock %}
+
+{% block content %}
+<div class="space-y-6"> </div>
+    <div>
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">Crear Nuevo Curso</h1>
+        <p class="text-gray-600">Completa el formulario para crear un nuevo curso.</p>
+    </div>
+    
+    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+        <p class="text-gray-700">Asegúrate de proporcionar información clara y precisa sobre el curso.</p>
+    </div>
+    
+    <form action="{{ url_for('profe.create_course') }}" method="POST" class="bg-white p-6 rounded-lg shadow-md space-y-4">
+        <div>
+        <label for="nombre_curso" class="block text-sm font-medium text-gray-700">Nombre del Curso</label>
+        <input type="text" name="nombre_curso" id="nombre_curso" class="mt-1 block w-full border-gray-300 focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+        </div>
+        <div>
+        <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción</label>
+        <textarea name="descripcion" id="descripcion" rows="4" class="mt-1 block w-full border-gray-300 focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"></textarea>
+        </div>
+        <div>
+        <input type="submit" value="Crear Curso" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        </div>
+    </form>
+</div>
+{% endblock %}

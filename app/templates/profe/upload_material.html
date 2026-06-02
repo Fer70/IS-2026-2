@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Subir Material{% endblock %}
+
+{% block content %}
+<div class="space-y-6"> 
+    <div>
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">Subir Material para {{ curso.nombre_curso }}</h1>
+        <p class="text-gray-600">Aquí puedes subir materiales educativos para el curso de {{ curso.nombre_curso }}.</p>
+    </div>
+    
+    {% if error %}
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+        <p class="text-red-700">{{ error }}</p>
+        </div>
+    {% endif %}
+    
+    <form action="{{ url_for('profe.upload_material', curso_id=curso.id_curso) }}" method="post" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow">
+        <div class="mb-4">
+            <label for="descripcion" class="block text-sm font-medium text-gray-700 mb-1">Descripción del material:</label>
+            <input type="text" name="descripcion" id="descripcion" required class="block w-full text-sm text-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        </div>
+        <div class="mb-4">
+        <label for="pdf" class="block text-sm font-medium text-gray-700 mb-1">Selecciona un archivo PDF para subir:</label>
+        <input type="file" name="pdf" id="pdf" accept=".pdf" class="block w-full text-sm text-gray-500 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+        </div>
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Subir Material</button>
+    </form>
+    {% if materiales %}
+        <div class="bg-gray-50 border-l-4 border-gray-500 p-4 rounded mt-6">
+            <h2 class="text-lg font-semibold text-gray-800 mb-2">Materiales subidos:</h2>
+            <ul class="list-disc list-inside text-sm text-gray-600">
+                {% for material in materiales %}
+                    <li>
+                        <a href="{{ url_for('ver_material', filename=material.material) }}" target="_blank" class="text-blue-600 hover:underline">{{ material.material}}</a>
+                    </li>
+                    <form action="{{ url_for('profe.delete_material', curso_id=curso.id_curso, material_id=material.id_material) }}" method="post" class="inline">
+                        <button type="submit" class="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">
+                        Eliminar
+                        </button>
+                    </form>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <div class="pt-6 border-t border-gray-200">
+        <a href="{{ url_for('profe.view_courses') }}" class="text-red-600 hover:text-red-700 font-medium">Volver a mis cursos</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Calificar Alumno{% endblock %}
+{% block content %}
+  <h1 class="text-3xl font-bold text-gray-800 mb-4">Calificar Alumno</h1>
+    <p class="text-gray-600 mb-6">Aquí puedes asignar una calificación al alumno <span class="font-semibold">{{ alumno.nombre_usuario }}</span> para el curso <span class="font-semibold">{{ curso.nombre_curso }}</span>.</p>
+    <p class="text-gray-800 mb-6">Calificación actual: <span class="font-bold text-green-600">{{ calificacion if calificacion is not none else "No asignada" }}</span></p>
+    {% if error %}
+    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded mb-6">
+        <p class="text-red-700">{{ error }}</p>
+    </div>
+    {% endif %}
+    <form method="POST" class="bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-4">
+            <label for="calificacion" class="block text-gray-700 font-medium mb-2">Calificación (0-100):</label>
+            <input type="number" id="calificacion" name="calificacion" min="0" max="100" required class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300">
+        </div>
+        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Asignar Calificación</button>
+    </form>
+    <div class="pt-6 border-t border-gray-200">
+        <a href="{{ url_for('profe.view_students', curso_id=curso.id_curso) }}" class="text-blue-600 hover:underline font-medium">← Volver a la lista de alumnos</a>
+    </div>
+{% endblock %}

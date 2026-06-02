@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Profesores en la plataforma{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-gray-800 mb-2">Profesores Registrados</h1>
+    <p class="text-gray-600">Aquí puedes ver la lista de todos los profesores registrados en la plataforma.</p>
+  </div>
+
+  <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+    <p class="text-gray-700">Revisa los profesores registrados y sus detalles.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+    {% for profesor in profesores %}
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ profesor.nombre_usuario }}</h3>
+      <p class="text-sm text-gray-600 mb-4">Número de cursos: {{ profesor.total_cursos }}</p>
+      <a href="{{ url_for('admin.view_teacher_courses', profesor_id=profesor.id_profesor) }}" class="text-blue-600 hover:underline font-medium">Ver cursos →</a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="pt-6 border-t border-gray-200">
+    <a href="{{ url_for('admin.dashboard') }}" class="text-blue-600 hover:underline font-medium">← Volver al Panel de Admin</a>
+  </div>
+{% endblock %}

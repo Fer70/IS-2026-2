@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Panel Cursos{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-gray-800 mb-2">Cursos del Profesor</h1>
+    <p class="text-gray-600">Aquí puedes ver los cursos que impartes y la cantidad de alumnos inscritos.</p>
+  </div>
+
+  <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+    <p class="text-gray-700">Revisa tus cursos y gestiona su contenido desde esta sección.</p>
+  </div>
+  {% if cursos %}
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+    {% for curso in cursos %}
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ curso.nombre_curso }}</h3>
+      <p class="text-sm text-gray-600 mb-4">{{ curso.descripcion }}</p>
+      <p class="text-sm text-gray-600 mb-4">Alumnos inscritos: {{ curso.total_alumnos }}</p>
+      <a href="{{ url_for('profe.view_students', curso_id=curso.id_curso) }}" class="text-blue-600 hover:underline font-medium">Ver alumnos →</a>
+      <form action="{{ url_for('profe.delete_course', curso_id=curso.id_curso) }}" method="post" class="inline">
+      <button type="submit" class="px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition">
+      Eliminar curso
+      </button>
+      </form>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">Materiales</h3>
+      <p class="text-sm text-gray-600 mb-4">Carga y organiza materiales educativos para tus estudiantes.</p>
+      <a href="{{ url_for('profe.upload_material', curso_id=curso.id_curso) }}" class="text-blue-600 hover:underline font-medium">Gestionar materiales →</a>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="pt-6 border-t border-gray-200">
+    <p class="text-gray-600">No tienes cursos asignados.</p>
+  </div>
+  {% endif %}
+  <div class="pt-6 border-t border-gray-200">
+    <a href="{{ url_for('profe.dashboard') }}" class="text-red-600 hover:text-red-700 font-medium">Vuelta al panel</a>
+  </div>
+  <div class="pt-6 border-t border-gray-200">
+    <a href="{{ url_for('auth.logout') }}" class="text-red-600 hover:text-red-700 font-medium">Cerrar sesión</a>
+  </div>
+{% endblock %}

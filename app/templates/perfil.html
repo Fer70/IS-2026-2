@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block content %}
+
+<div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow">
+
+    <h1 class="text-3xl font-bold mb-6">
+        Mi Perfil
+    </h1>
+
+    {% if error %}
+        <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    {% if success %}
+        <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
+            {{ success }}
+        </div>
+    {% endif %}
+
+    <form method="POST" class="space-y-4">
+
+        <div>
+            <label class="block mb-2 font-medium">
+                Modificar nombre de usuario
+            </label>
+
+            <input
+                type="text"
+                name="nombre_usuario"
+                value="{{ usuario.nombre_usuario }}"
+                class="w-full border rounded px-4 py-2"
+            >
+        </div>
+
+        <button
+            type="submit"
+            class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+        >
+            Guardar cambios
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

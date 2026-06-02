@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="space-y-6">
+    <div>
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">Acerca de esta plataforma</h1>
+        <p class="text-gray-600">Esta plataforma de cursos fue desarrollada para la clase de Ing de Software con el objetivo de facilitar el acceso a la educación en línea. El proyecto es una iniciativa académica que busca ofrecer una experiencia de aprendizaje intuitiva y accesible para todos los usuarios.</p>
+    </div>
+
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+        <p class="text-gray-700">La meta del curso es la mejora continua y la innovación educativa.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Equipo de Desarrollo</h3>
+            <p class="text-sm text-gray-600 mb-4">Fernando Ocampo Tovar.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Tecnologías Utilizadas</h3>
+            <p class="text-sm text-gray-600 mb-4">Se utilizó tecnologías modernas como Flask para el backend, SQLAlchemy para la gestión de bases de datos, y Tailwind CSS para un diseño responsivo y atractivo.</p>
+        </div>
+    </div>
+
+    <div class="pt-6 border-t border-gray-200">
+        <a href="{{ url_for('home.landing') }}" class="text-blue-600 hover:underline font-medium">← Volver a la página principal</a>
+    </div>
+</div>
+{% endblock %}

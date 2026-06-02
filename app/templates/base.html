@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+            App Cursos
+        {% endblock %}
+    </title>
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100 min-h-screen text-gray-800">
+
+    {% if user is defined and user %}
+        {% include 'partials/navbar.html' %}
+    {% endif %}
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md">
+
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+            <h1 class="text-2xl font-bold text-blue-600">
+                App Cursos
+            </h1>
+
+            <div class="space-x-4">
+            {% if not user %}
+                <a href="/" class="hover:text-blue-500">
+                    Inicio
+                </a>
+
+                <a href="{{ url_for('home.about') }}" class="hover:text-blue-500">
+                    About
+                </a>
+            {% endif %}
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- Contenido -->
+    <main class="max-w-7xl mx-auto p-6">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    {% block scripts %}
+    {% endblock %}
+
+    {% block styles %}
+    {% endblock %}
+
+</body>
+
+</html>

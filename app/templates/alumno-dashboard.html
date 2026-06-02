@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Panel Alumno{% endblock %}
+
+
+{% block content %}
+<div class="space-y-6">
+  <div>
+    <h1 class="text-4xl font-bold text-gray-800 mb-2">Panel de Alumno</h1>
+    <p class="text-gray-600">Bienvenido, <span class="font-semibold">{{ user.username }}</span>.</p>
+  </div>
+
+  <div class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded">
+    <p class="text-gray-700">Desde aquí podrás ver tus cursos, materiales y progreso.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">Mis Cursos</h3>
+      <p class="text-sm text-gray-600 mb-4">Visualiza todos los cursos en los que estás inscrito.</p>
+      <a href="{{ url_for('alumno.view_courses') }}" class="text-blue-600 hover:underline font-medium">Ir →</a>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">Inscribir Curso</h3>
+      <p class="text-sm text-gray-600 mb-4">Explora los cursos disponibles y únete a uno para comenzar tu aprendizaje.</p>
+      <a href="{{ url_for('alumno.all_cursos') }}" class="text-blue-600 hover:underline font-medium">Ir →</a>
+    </div>
+
+
+  <div class="pt-6 border-t border-gray-200">
+    <a href="{{ url_for('auth.logout') }}" class="text-red-600 hover:text-red-700 font-medium">Cerrar sesión</a>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+<nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+
+    <h1 class="text-2xl font-bold text-blue-600">
+        Plataforma de Cursos
+    </h1>
+
+    <div class="flex gap-3 items-center">
+
+
+        {% if user %}
+
+            <a href="/auth/perfil" class="hover:text-blue-500">
+                Perfil
+            </a>
+
+            {% if user.get("role") == "profesor" %}
+
+                <a href="/profe/dashboard" class="hover:text-blue-500">
+                    Panel Profesor
+                </a>
+
+                <a href="/profe/cursos" class="hover:text-blue-500">
+                    Cursos
+                </a>
+
+            {% endif %}
+
+            {% if user.get("role") == "admin" %}
+
+                <a href="/admin/dashboard" class="hover:text-blue-500">
+                    Panel Admin
+                </a>
+
+            {% endif %}
+
+            {% if user.get("role") == "alumno" %}
+
+                <a href="/alumno/dashboard" class="hover:text-blue-500">
+                    Panel Alumno
+                </a>
+
+                <a href="/alumno/cursos" class="hover:text-blue-500">
+                    Mis Cursos
+                </a>
+
+            {% endif %}
+
+            <a href="/auth/logout"
+               class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                Salir
+            </a>
+
+        {% else %}
+
+            <a href="/login" class="hover:text-blue-500">
+                Iniciar sesión
+            </a>
+
+            <a href="/auth/register" class="hover:text-blue-500">
+                Registrarse
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>
