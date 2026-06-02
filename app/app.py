@@ -28,10 +28,10 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = URL.create(
         drivername="mysql+pymysql",
         username="root",  # Cambiar a su usuario de MySQL
-        password="bolillo70",  # Cambiar a su contraseña de MySQL
+        password="",  # Cambiar a su contraseña de MySQL
         host="localhost",
         port=3306, # Cambiar al puerto de MySQL si es diferente
-        database="cursos"  # Cambiar a su base de datos de MySQL
+        database=""  # Cambiar a su base de datos de MySQL
     )
     app.config.from_mapping(SECRET_KEY="dev")
     db.init_app(app)
@@ -58,6 +58,7 @@ def create_app():
 
     app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+    """Crear admin"""
     """with app.app_context():
 
         admin = Usuario(
