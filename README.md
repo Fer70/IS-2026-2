@@ -1,6 +1,6 @@
 # Sistema de Gestión de Pedidos Smiling Friends
 
-Aplicación web desarrollada con Flask y MySQL para la gestión de cursos de idiomas.
+Aplicación web desarrollada con Flask y MySQL para la gestión de cursos de idiomas para el curso de Ingeniería de Software.
 
 ## Tecnologías
 
